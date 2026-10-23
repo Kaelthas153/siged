@@ -1,0 +1,11 @@
+.env
+.venv/
+.runtime.json
+.demo-credentials.txt
+__pycache__/
+*.py[cod]
+.pytest_cache/
+staticfiles/
+logs/
+*.log
+backups/
