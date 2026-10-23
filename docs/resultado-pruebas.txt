@@ -1,0 +1,58 @@
+Creating test database for alias 'default' ('test_siged')...
+
+Found 18 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, reports, staticfiles
+  Apply all migrations: accounts, admin, audit, auth, contenttypes, incidents, resources, sessions, tasks
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying accounts.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying audit.0001_initial... OK
+  Applying incidents.0001_initial... OK
+  Applying tasks.0001_initial... OK
+  Applying resources.0001_initial... OK
+  Applying incidents.0002_initial... OK
+test_admin_creation_audited_and_escalation_ignored (incidents.tests.WeekOneTests.test_admin_creation_audited_and_escalation_ignored) ... ok
+test_admin_separation (incidents.tests.WeekOneTests.test_admin_separation) ... ok
+test_anonymous_redirect (incidents.tests.WeekOneTests.test_anonymous_redirect) ... ok
+test_atomic_history (incidents.tests.WeekOneTests.test_atomic_history) ... ok
+test_catalog_audit_and_delete_denial (incidents.tests.WeekOneTests.test_catalog_audit_and_delete_denial) ... ok
+test_csrf_enforced (incidents.tests.WeekOneTests.test_csrf_enforced) ... ok
+test_database_state_constraint (incidents.tests.WeekOneTests.test_database_state_constraint) ... ok
+test_empty_description_rejected (incidents.tests.WeekOneTests.test_empty_description_rejected) ... ok
+test_future_rejected (incidents.tests.WeekOneTests.test_future_rejected) ... ok
+test_html_escaped (incidents.tests.WeekOneTests.test_html_escaped) ... ok
+test_inactive_catalog_rejected (incidents.tests.WeekOneTests.test_inactive_catalog_rejected) ... ok
+test_invalid_multiple_roles (incidents.tests.WeekOneTests.test_invalid_multiple_roles) ... ok
+test_login_and_logout (incidents.tests.WeekOneTests.test_login_and_logout) ... ok
+test_operational_permissions (incidents.tests.WeekOneTests.test_operational_permissions) ... ok
+test_own_records_only (incidents.tests.WeekOneTests.test_own_records_only) ... ok
+test_private_history_hidden (incidents.tests.WeekOneTests.test_private_history_hidden) ... ok
+test_server_controls_identity_and_state (incidents.tests.WeekOneTests.test_server_controls_identity_and_state) ... ok
+test_two_requests_cannot_overbook (incidents.tests.StockConcurrencyTests.test_two_requests_cannot_overbook) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 208.456s
+
+OK
+Destroying test database for alias 'default' ('test_siged')...
+

@@ -1,0 +1,7 @@
+{% load static %}<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{% block title %}SIGED{% endblock %}</title><link rel="stylesheet" href="{% static 'siged.css' %}"></head>
+<body><div class="demo-banner">PROTOTIPO ACADÉMICO <span>·</span> Datos ficticios · No es un canal de emergencias</div>
+<header class="site-header"><a class="brand" href="{% url 'home' %}"><span class="brand-mark" aria-hidden="true">S</span><span>SIGED<small>Registro y seguimiento</small></span></a>
+{% if user.is_authenticated %}<nav aria-label="Navegación principal"><a href="{% url 'home' %}">Inicio</a><span class="role-pill">{{ role_label }}</span><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button class="text-button" type="submit">Salir</button></form></nav>{% endif %}</header>
+<main id="main">{% if messages %}<div aria-live="polite">{% for message in messages %}<div class="notice">{{ message }}</div>{% endfor %}</div>{% endif %}{% block content %}{% endblock %}</main>
+<footer>SIGED <span>·</span> Desarrollo de Software <span>·</span> Simulación académica</footer></body></html>
