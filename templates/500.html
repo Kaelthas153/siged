@@ -1,1 +1,1 @@
-<!doctype html><html lang="es"><meta charset="utf-8"><title>SIGED</title><main><h1>No pudimos completar la solicitud</h1><p>Intenta nuevamente o consulta al administrador.</p><a href="/">Volver</a></main></html>
+{% extends 'base.html' %}{% block title %}Solicitud no completada · SIGED{% endblock %}{% block content %}<section class="card empty"><p class="eyebrow">SOLICITUD NO COMPLETADA</p><h1>No pudimos completar la solicitud</h1><p>Intenta nuevamente o consulta al administrador.</p><a class="button" href="{% url 'home' %}">Volver al inicio</a></section>{% endblock %}

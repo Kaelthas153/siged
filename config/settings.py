@@ -59,6 +59,7 @@ LOGOUT_REDIRECT_URL = 'login'
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_FAILURE_VIEW = 'config.views.csrf_failure'
 SECURE_CONTENT_TYPE_NOSNIFF = True
 X_FRAME_OPTIONS = 'DENY'
 # La demostración es HTTP local. Activar cookies seguras únicamente con HTTPS.

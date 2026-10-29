@@ -5,6 +5,7 @@ class SigedAdminSite(AdminSite):
     site_header = 'SIGED · Administración'
     site_title = 'SIGED'
     index_title = 'Cuentas, catálogos y auditoría'
+    enable_nav_sidebar = False
 
     def has_permission(self, request):
         return request.user.is_active and request.user.is_staff and role_of(request.user) == 'administrador'

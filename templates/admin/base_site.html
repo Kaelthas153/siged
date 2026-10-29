@@ -1,0 +1,11 @@
+{% extends 'admin/base.html' %}{% load static %}
+{% block title %}{{ title }} · SIGED{% endblock %}
+{% block bodyclass %}{{ block.super }} siged-admin{% endblock %}
+{% block dark-mode-vars %}{% endblock %}
+{% block responsive %}{{ block.super }}<link rel="stylesheet" href="{% static 'siged.css' %}"><link rel="stylesheet" href="{% static 'siged-admin.css' %}">{% endblock %}
+{% block header %}
+{% include 'includes/demo_banner.html' %}
+<header class="site-header">{% include 'includes/brand.html' %}
+{% if has_permission %}<nav aria-label="Navegación principal"><a href="{% url 'admin:index' %}">Inicio</a><span class="role-pill">Administrador</span><a href="{% url 'admin:password_change' %}">Contraseña</a><form method="post" action="{% url 'logout' %}">{% csrf_token %}<button type="submit" class="text-button">Salir</button></form></nav>{% endif %}</header>
+{% endblock %}
+{% block footer %}{% include 'includes/footer.html' %}{% endblock %}

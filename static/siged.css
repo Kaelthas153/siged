@@ -2,3 +2,6 @@
 
 .action-links{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:18px 0}.workflow-actions,.task-card{margin-bottom:24px}.task-card{padding:20px 0;border-bottom:1px solid var(--line)}.action-form{max-width:780px;margin-top:24px}.action-form .field{margin-bottom:22px}.action-links .button{white-space:normal}.task-card p,.timeline p{overflow-wrap:anywhere}
 .timeline time { display: block; margin-bottom: .35rem; }
+.card.task-card { padding:25px 28px; }
+.detail-layout { align-items:start; }
+@media(max-width:760px){.card.task-card{padding:22px}.action-links{gap:12px}.button{min-height:44px}}
