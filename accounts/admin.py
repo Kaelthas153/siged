@@ -39,6 +39,8 @@ class FunctionalUserForm(forms.ModelForm):
             except ValidationError as exc: self.add_error('new_password', exc)
         if self.instance.pk and (not data.get('is_active') or data.get('role') != role_of(self.instance)):
             from tasks.models import Task
+            # Django Admin envuelve el POST en atomic; coordina con la asignación.
+            User.objects.select_for_update().get(pk=self.instance.pk)
             if Task.objects.filter(assignee=self.instance, status__in=['pendiente','en_progreso']).exists():
                 raise ValidationError('La cuenta tiene tareas abiertas. No se puede desactivar ni cambiar su rol.')
         return data

@@ -1,0 +1,80 @@
+Using existing test database for alias 'default' ('test_siged_semana2')...
+
+Found 38 test(s).
+Operations to perform:
+  Synchronize unmigrated apps: messages, reports, staticfiles
+  Apply all migrations: accounts, admin, audit, auth, contenttypes, incidents, resources, sessions, tasks
+Synchronizing apps without migrations:
+  Creating tables...
+    Running deferred SQL...
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0001_initial... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying accounts.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying audit.0001_initial... OK
+  Applying incidents.0001_initial... OK
+  Applying tasks.0001_initial... OK
+  Applying resources.0001_initial... OK
+  Applying incidents.0002_initial... OK
+test_admin_cannot_disable_operator_with_open_tasks (incidents.test_week2.WeekTwoTests.test_admin_cannot_disable_operator_with_open_tasks) ... ok
+test_cancellation_with_reason_and_terminal (incidents.test_week2.WeekTwoTests.test_cancellation_with_reason_and_terminal) ... ok
+test_correction_invalid_date_rolls_back (incidents.test_week2.WeekTwoTests.test_correction_invalid_date_rolls_back) ... ok
+test_correction_resubmission_validation_preserves_identity (incidents.test_week2.WeekTwoTests.test_correction_resubmission_validation_preserves_identity) ... ok
+test_duplicate_original_constraints (incidents.test_week2.WeekTwoTests.test_duplicate_original_constraints) ... ok
+test_foreign_correction_and_state_rejected (incidents.test_week2.WeekTwoTests.test_foreign_correction_and_state_rejected) ... ok
+test_forms_get_readonly_csrf_and_roles (incidents.test_week2.WeekTwoTests.test_forms_get_readonly_csrf_and_roles) ... ok
+test_invalid_assignee_and_due_date (incidents.test_week2.WeekTwoTests.test_invalid_assignee_and_due_date) ... ok
+test_post_review_and_coordinator_forms (incidents.test_week2.WeekTwoTests.test_post_review_and_coordinator_forms) ... ok
+test_priority_and_following_requirements (incidents.test_week2.WeekTwoTests.test_priority_and_following_requirements) ... ok
+test_rejection_public_private_separation_and_terminal (incidents.test_week2.WeekTwoTests.test_rejection_public_private_separation_and_terminal) ... ok
+test_rejection_requires_both_messages (incidents.test_week2.WeekTwoTests.test_rejection_requires_both_messages) ... ok
+test_review_and_correction_history_atomicity (incidents.test_week2.WeekTwoTests.test_review_and_correction_history_atomicity) ... ok
+test_review_queue_and_own_tasks (incidents.test_week2.WeekTwoTests.test_review_queue_and_own_tasks) ... ok
+test_review_role_and_required_observation (incidents.test_week2.WeekTwoTests.test_review_role_and_required_observation) ... ok
+test_stale_form_cannot_overwrite (incidents.test_week2.WeekTwoTests.test_stale_form_cannot_overwrite) ... ok
+test_task_lifecycle_result_and_immutability (incidents.test_week2.WeekTwoTests.test_task_lifecycle_result_and_immutability) ... ok
+test_task_requires_following_and_owner (incidents.test_week2.WeekTwoTests.test_task_requires_following_and_owner) ... ok
+test_task_write_rolls_back_if_history_fails (incidents.test_week2.WeekTwoTests.test_task_write_rolls_back_if_history_fails) ... ok
+test_admin_creation_audited_and_escalation_ignored (incidents.tests.WeekOneTests.test_admin_creation_audited_and_escalation_ignored) ... ok
+test_admin_separation (incidents.tests.WeekOneTests.test_admin_separation) ... ok
+test_anonymous_redirect (incidents.tests.WeekOneTests.test_anonymous_redirect) ... ok
+test_atomic_history (incidents.tests.WeekOneTests.test_atomic_history) ... ok
+test_catalog_audit_and_delete_denial (incidents.tests.WeekOneTests.test_catalog_audit_and_delete_denial) ... ok
+test_csrf_enforced (incidents.tests.WeekOneTests.test_csrf_enforced) ... ok
+test_database_state_constraint (incidents.tests.WeekOneTests.test_database_state_constraint) ... ok
+test_empty_description_rejected (incidents.tests.WeekOneTests.test_empty_description_rejected) ... ok
+test_future_rejected (incidents.tests.WeekOneTests.test_future_rejected) ... ok
+test_html_escaped (incidents.tests.WeekOneTests.test_html_escaped) ... ok
+test_inactive_catalog_rejected (incidents.tests.WeekOneTests.test_inactive_catalog_rejected) ... ok
+test_invalid_multiple_roles (incidents.tests.WeekOneTests.test_invalid_multiple_roles) ... ok
+test_login_and_logout (incidents.tests.WeekOneTests.test_login_and_logout) ... ok
+test_operational_permissions (incidents.tests.WeekOneTests.test_operational_permissions) ... ok
+test_own_records_only (incidents.tests.WeekOneTests.test_own_records_only) ... ok
+test_private_history_hidden (incidents.tests.WeekOneTests.test_private_history_hidden) ... ok
+test_server_controls_identity_and_state (incidents.tests.WeekOneTests.test_server_controls_identity_and_state) ... ok
+test_two_reviews_only_one_transition (incidents.test_week2.ReviewConcurrencyTests.test_two_reviews_only_one_transition) ... ok
+test_two_requests_cannot_overbook (incidents.tests.StockConcurrencyTests.test_two_requests_cannot_overbook) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 70.958s
+
+OK
+Preserving test database for alias 'default' ('test_siged_semana2')...
+
+  Applying sessions.0001_initial... OK
+System check identified no issues (0 silenced).

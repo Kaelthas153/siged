@@ -29,7 +29,8 @@ def fixtures():
     return users,data
 
 class WeekOneTests(TestCase):
-    def setUp(self): self.users,self.data=fixtures()
+    @classmethod
+    def setUpTestData(cls): cls.users,cls.data=fixtures()
     def incident(self,who='ciudadano'): return create_incident(user=self.users[who],data=self.data)
     def login(self,role='ciudadano'): self.client.force_login(self.users[role])
     def post_data(self):

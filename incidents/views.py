@@ -10,7 +10,9 @@ from .services import create_incident, visible_incidents
 @roles_required('ciudadano', 'operador', 'coordinador')
 def incident_list(request):
     qs = visible_incidents(request.user)
-    return render(request, 'incidents/list.html', {'page_obj': Paginator(qs, 10).get_page(request.GET.get('page')), 'total': qs.count()})
+    reviewing = role_of(request.user)=='operador' and request.GET.get('bandeja')=='revision'
+    if reviewing: qs=qs.filter(status__in=['pendiente','reenviado']).order_by('updated_at','pk')
+    return render(request, 'incidents/list.html', {'page_obj': Paginator(qs, 10).get_page(request.GET.get('page')), 'total': qs.count(),'reviewing':reviewing})
 
 @roles_required('ciudadano', 'operador', 'coordinador')
 def incident_detail(request, pk):
@@ -18,7 +20,15 @@ def incident_detail(request, pk):
     history = obj.history.all()
     if role_of(request.user) == 'ciudadano':
         history = history.exclude(citizen_message__isnull=True).exclude(citizen_message='')
-    return render(request, 'incidents/detail.html', {'incident': obj, 'history': history})
+    role=role_of(request.user)
+    tasks=obj.tasks.select_related('assignee').order_by('created_at','pk')
+    if role=='operador': tasks=tasks.filter(assignee=request.user)
+    if role=='ciudadano': tasks=tasks.none()
+    return render(request, 'incidents/detail.html', {'incident': obj, 'history': history,'tasks':tasks,
+        'can_review':role=='operador' and obj.status in ('pendiente','reenviado'),
+        'can_correct':role=='ciudadano' and obj.status=='correccion_solicitada',
+        'can_coordinate':role=='coordinador' and obj.status in ('validado','en_seguimiento'),
+        'can_follow':role=='coordinador' and obj.status=='validado'})
 
 @roles_required('ciudadano')
 @require_http_methods(['GET', 'POST'])

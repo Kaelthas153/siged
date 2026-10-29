@@ -1,0 +1,13 @@
+{% extends 'base.html' %}{% block title %}{{ title }} · SIGED{% endblock %}
+{% block content %}
+<a class="back-link" href="{% url 'incidents:detail' incident.pk %}">← Volver a la ficha</a>
+<div class="page-heading"><div><p class="eyebrow">{{ incident.code }} · {{ incident.get_status_display }}</p><h1>{{ title }}</h1><p>{{ incident.title }}</p></div></div>
+{% if observation %}<section class="notice"><strong>Corrección solicitada</strong><p>{{ observation.citizen_message }}</p></section>{% endif %}
+{% if task %}<section class="card"><h2>Tarea {{ task.pk }}</h2><p>{{ task.description }}</p><p>{{ task.assignee.display_name }} · {{ task.get_status_display }} · Vence {{ task.due_at|date:'d/m/Y H:i' }}</p></section>{% endif %}
+<section class="card action-form"><form method="post">{% csrf_token %}
+{% if form.errors %}<div class="error-summary" role="alert"><strong>No se guardaron los cambios.</strong>{{ form.non_field_errors }}</div>{% endif %}
+{% for hidden in form.hidden_fields %}{{ hidden }}{{ hidden.errors }}{% endfor %}
+{% for field in form.visible_fields %}<div class="field"><label for="{{ field.id_for_label }}">{{ field.label }}{% if field.field.required %} *{% endif %}</label>{{ field }}{% if field.help_text %}<p class="help">{{ field.help_text }}</p>{% endif %}{{ field.errors }}</div>{% empty %}<p>Confirma esta acción para registrarla en el historial.</p>{% endfor %}
+<div class="form-actions"><button type="submit" class="button">{{ submit }}</button><a href="{% url 'incidents:detail' incident.pk %}">Cancelar</a></div>
+</form></section><p class="small muted">Hora de La Paz. Los cambios se validan al guardar. Usa únicamente información ficticia.</p>
+{% endblock %}

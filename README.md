@@ -1,4 +1,4 @@
-# SIGED · Semana 1
+# SIGED · Semana 2
 
 SIGED significa **Sistema de Gestión de Desastres**. En este proyecto es un prototipo académico de registro y seguimiento simulado de incidentes asociados a amenazas naturales, contextualizado a La Paz. No predice desastres ni recibe emergencias reales.
 
@@ -8,7 +8,8 @@ SIGED significa **Sistema de Gestión de Desastres**. En este proyecto es un pro
 2. Abre http://127.0.0.1:8000/.
 3. Consulta **.demo-credentials.txt** para las cuatro cuentas y sus contraseñas. Son credenciales locales generadas, excluidas del ZIP.
 4. Entra como ciudadano, pulsa **Nuevo reporte**, completa los datos ficticios y abre la ficha creada.
-5. Cierra sesión y entra como administrador para revisar cuentas, zonas, amenazas, recursos y auditoría.
+5. Continúa la demostración de revisión y tareas cambiando entre operador, ciudadano y coordinador según `docs/SEMANA_2.md`.
+6. El administrador mantiene cuentas, catálogos y auditoría.
 
 La base aislada escucha en 127.0.0.1:55432. No modifica la instalación PostgreSQL de otros proyectos. El servidor web de desarrollo se utiliza solo para la demostración local.
 
@@ -19,14 +20,16 @@ La base aislada escucha en 127.0.0.1:55432. No modifica la instalación PostgreS
 - Inicio y cierre de sesión; contraseñas almacenadas mediante hash; protección CSRF.
 - Registro validado de incidentes, código automático, estado inicial e historial atómico.
 - Listado paginado y consulta de reportes propios. Un identificador ajeno devuelve 404.
-- Operador y coordinador consultan reportes; sus acciones operativas llegarán en semana 2.
+- Revisión, corrección y reenvío; validación, rechazo y vinculación de duplicados.
+- Prioridad motivada, inicio de seguimiento y tareas con responsable, vencimiento y resultado.
+- Bandejas de revisión y tareas abiertas; controles de concurrencia y versiones desactualizadas.
 - Panel de cuentas y catálogos con motivo obligatorio y auditoría; sin eliminación física desde el panel.
 - Estructura de tareas y reservas; prueba técnica concurrente de stock, todavía sin interfaz de reservas.
-- Datos ficticios y pruebas automatizadas. Consulta `docs/SEMANA_1.md` y `docs/PRUEBAS_SEMANA_1.md`.
+- Datos ficticios y pruebas automatizadas. La suite acumulada tiene 38 pruebas aprobadas. Consulta `docs/SEMANA_2.md` y `docs/PRUEBAS_SEMANA_2.md`; la documentación de semana 1 se conserva como antecedente.
 
 ## Explicación breve para exponer
 
-“Estoy construyendo una aplicación web donde un ciudadano registra un incidente, por ejemplo una inundación ficticia. El sistema guarda quién lo reportó, dónde ocurrió y su descripción. El ciudadano consulta únicamente sus propios reportes. En la primera semana implementé la base de datos, los roles, los catálogos y ese primer flujo. En las próximas semanas añadiré revisión, tareas y reservas. Ya probé que dos solicitudes simultáneas no puedan reservar más unidades de las disponibles”.
+“SIGED es una aplicación web adaptable a celular para reportar incidentes ficticios. En la semana 1 implementé el registro, la base PostgreSQL y los roles. En la semana 2 añadí la revisión: el operador pide correcciones y valida o rechaza; el ciudadano corrige; el coordinador prioriza, asigna tareas e inicia el seguimiento. El operador asignado completa cada tarea con un resultado. Todo queda en el historial”.
 
 ## Instalación en otro equipo
 
@@ -51,11 +54,11 @@ Para uso normal configura un usuario PostgreSQL separado sin privilegios de supe
 .\.venv\Scripts\python manage.py runserver 127.0.0.1:8000 --noreload --insecure
 ```
 
-`--insecure` sirve los estilos con DEBUG=0 exclusivamente en esta demostración local. Una publicación requeriría servidor WSGI, HTTPS, archivos estáticos, copias de seguridad y configuración de producción; no está incluida en semana 1.
+`--insecure` sirve los estilos con DEBUG=0 exclusivamente en esta demostración local. Una publicación requeriría servidor WSGI, HTTPS, archivos estáticos, copias de seguridad y configuración de producción; no está incluida en esta entrega.
 
 ## Repetir las pruebas
 
-En este equipo ejecuta `scripts/PROBAR.ps1`. En otra instalación usa `python manage.py test incidents --verbosity 2` con credenciales de una base de desarrollo cuyo usuario pueda crear y eliminar la base temporal `test_siged`. Nunca ejecutes pruebas contra una configuración de producción. Las pruebas no utilizan los reportes de demostración.
+En este equipo ejecuta `scripts/PROBAR.ps1`. Usa una base aislada llamada `test_siged_semana2` y la conserva con `--keepdb`. En otra instalación, configura un usuario de desarrollo con permiso para crear la base de pruebas y sigue `docs/PRUEBAS_SEMANA_2.md`. Nunca utilices el nombre de la base operativa como `DB_TEST_NAME`. Las pruebas no utilizan los reportes de demostración.
 
 ## Organización
 
@@ -63,7 +66,7 @@ En este equipo ejecuta `scripts/PROBAR.ps1`. En otra instalación usa `python ma
 |---|---|
 | accounts | Usuarios, roles, autenticación y aprovisionamiento |
 | incidents | Catálogos, registro, consultas e historial |
-| tasks | Modelo de tareas; acciones previstas para semana 2 |
+| tasks | Asignación, inicio, finalización y cancelación de tareas |
 | resources | Catálogo, reservas y prueba técnica de bloqueo |
 | audit | Registro administrativo de cambios |
 | reports | Espacio reservado para consultas de semana 3 |
@@ -74,6 +77,6 @@ Las rutas llaman a vistas, formularios y servicios; los servicios aplican permis
 
 ## Límites y continuidad
 
-Quedan pendientes la revisión del docente y las funciones de semanas 2–4: corrección/reenvío, validación/rechazo, priorización, asignación y cierre de tareas, liberación de recursos, resolución/cierre, reportes finales y evaluación completa. Las restricciones de base no sustituyen los servicios de transición que todavía deben implementarse. No se deben modificar estados manualmente desde SQL para operar la aplicación.
+Quedan pendientes la revisión docente, reservas y liberación de recursos, resolución/cierre de incidentes, filtros finales y evaluación completa de semanas 3–4. La comprobación móvil se realizó en navegador con ancho de 390 píxeles; falta probar en un teléfono físico. No se deben modificar estados manualmente desde SQL para operar la aplicación.
 
 Referencias técnicas: [Django 5.2](https://docs.djangoproject.com/en/5.2/), [transacciones](https://docs.djangoproject.com/en/5.2/topics/db/transactions/), [bloqueo select_for_update](https://docs.djangoproject.com/en/5.2/ref/models/querysets/#select-for-update).
